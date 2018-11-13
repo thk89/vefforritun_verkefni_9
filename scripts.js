@@ -8,6 +8,7 @@ const program = (() => {
 	let domains;
 
 	function addToDescriptionList(descriptionList, term, description) {
+		if(description === "") return;
 		const termElement = document.createElement("dt");
 		const descriptionElement = document.createElement("dd");
 		
@@ -59,6 +60,8 @@ const program = (() => {
 						let result = data.results[0];
 						let descriptionList = document.createElement("dl");
 
+						console.log(result);
+
 						addToDescriptionList(descriptionList, "Lén", result.domain);
 						addToDescriptionList(descriptionList, "Skráð", result.registered);
 						addToDescriptionList(descriptionList, "Seinast breytt", result.lastChange);
@@ -72,9 +75,10 @@ const program = (() => {
 					}
 				})
 				.catch(function(error) {
+					result_display.appendChild(document.createTextNode("villa kom upp við að sækja gögn"));
 				});
 		}else {
-			result_display.appendChild(document.createTextNode("leitar strengur er tómur"));
+			result_display.appendChild(document.createTextNode("leitarstrengur er tómur"));
 		}
 	}
 
